@@ -1,0 +1,76 @@
+{% extends "./base.html" %}
+
+{% block title %} Estudiantes {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Agregar estudiante</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>{{error}}</h5>
+                <form id="formularioEstudiante" action="/registrarEstudiante/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="txtDni" onKeypress="if (45 > event.keyCode || event.keyCode > 57) event.returnValue = false" name="txtDni" class="form-control" placeholder="Documento de identidad" minlength="8" maxlength="8" required>
+                    </div> 
+                    <div class="form-group py-2">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido" maxlength="35" required>
+                    </div> 
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre2" name="txtNombre2" class="form-control" placeholder="Nombre" maxlength="35" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="txtFechaNacimiento" name="txtFechaNacimiento" class="form-control" required>
+                    </div> 
+                    <div class="py-2">
+                        <select class="form-select" id="txtSexo" name="txtSexo" required >
+                            <option value="" selected>Sexo</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                        </select> 
+                    </div>
+                    <div class="py-2">
+                        <select class="form-select" id="txtCarrera" name="txtCarrera" required>
+                            <option value="" selected>Carrera</option>
+                            {% for c in carreras %}
+                                <option value="{{c.codigo}}">{{c.nombre}}</option>
+                            {% endfor %}
+                        </select> 
+                    </div>
+                    <div class="form-group py-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-dark btn-block text-white">Guardar</button>
+                    </div> 
+                </form> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Estudiantes</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Identificación </th>
+                    <th> Nombre Completo </th>
+                    <th> Fecha de nacimiento </th>
+                    <th> Sexo </th>
+                    <th> Carrera </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in estudiantes %}
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{c.dni}}</td>
+                    <td>{{c.nombreCompleto}}</td>
+                    <td>{{c.fechaNacimiento}}</td>
+                    <td>{{c.sexo}}</td>
+                    <td>{{c.carrera}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </div>
+    </div>
+</div>
+{% endblock %}

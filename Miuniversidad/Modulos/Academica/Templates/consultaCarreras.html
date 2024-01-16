@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block title %} Carreras {% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h2 >Listado de Carreras</h2>
+                <div class="table-responsive py-2">
+                    <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> Código </th>
+                            <th> Nombre </th>
+                            <th> Duración (años) </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in carreras %}
+                        <tr>
+                            <td>{{ forloop.counter}}</td>
+                            <td>{{c.codigo}}</td>
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.duracion}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block title %} Iniciar Sesión {% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-2"> 
+            <h2>Inicia Sesión</h2>
+            <form method="POST" class="card card-body mb-3"  >
+                {% csrf_token %}
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <div class="form-group py-4 d-grid">
+                    <button type="submit" class="btn btn-dark btn-block text-white">Iniciar sesión</button>
+                </div>
+                {% if error %}
+                    <h5>{{ error }}</h5>
+                {% endif %}
+            </form>
+            <p>No tienes una cuenta? <a href="/registroUsuario/">Regístrate</a></p>
+            <p>Olvidaste tu contraseña? <a href="/reset_password/">Recúperala</a></p>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+
+
+

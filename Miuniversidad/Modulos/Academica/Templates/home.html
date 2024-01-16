@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block title %} HOME {% endblock %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    <main class="container py-5">
+        <div class="col-md-4 offset-md-4 mt-2"> 
+        <section class="card card-body">
+            <h2 class="display-1 text-center">Bienvenido</h2>
+            <h3 class="text-center"> {{user.username}}</h3>
+            <h3 class="text-center"> Ahora puedes:</h3>
+            <div class="text-center"> Registrar tus datos como estudiante.<br>
+                Registrar cursos. <br> 
+                Consultar las carreras disponibles.
+            </div>
+        </section>
+    </main>
+{% else %}
+    <main class="container py-5">
+        <section class="card card-body">
+            <h1 class="display-1 text-center" >Bienvenido</h1>
+            <div class="display-5 text-center"> Para poder realizar operaciones debes iniciar sesión.</div>
+        </section>
+    </main>
+{% endif %}
+
+{% endblock %}

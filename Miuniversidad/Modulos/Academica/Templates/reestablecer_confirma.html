@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+
+{% block title %} Recuperar contraseña {% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-2"> 
+          {% if validlink %}
+              <h2>Reestablece tu contraseña</h2>
+              <form method="POST" class="card card-body mb-3"  >
+                  {% csrf_token %}
+                  <label for="id_new_password1">Ingresa una nueva contraseña:</label>
+                  <input type="password" id="id_new_password1" name="new_password1" required>
+
+                  <label for="id_new_password2">Confirma la nueva contraseña:</label>
+                  <input type="password" id="id_new_password2" name="new_password2" required>
+
+                  <div class="form-group py-4 d-grid">
+                    <button type="submit" class="btn btn-dark btn-block text-white">Guardar</button>
+                  </div>
+              </form>
+          {% else %}
+              <p>El enlace para restablecer la contraseña no es válido, posiblemente porque ya ha sido utilizado.</p>
+              <p>Solicita un nuevo reestablecimiento de contraseña.</p>
+          {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}
